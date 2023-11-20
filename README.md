@@ -1,6 +1,10 @@
 # EctoSqlReadiness
 
-**TODO: Add description**
+How can we ensure that there are no pending migration during deployment?
+How can we ensure that Ecto is ready?
+
+This library has been used with AWS Codedeploy, so we don't send
+any traffic to the containers unless we ensure that Ecto is ready to work.
 
 ## Installation
 
@@ -10,7 +14,7 @@ by adding `ecto_sql_readiness` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:ecto_sql_readiness, "~> 0.1.0"}
+    {:ecto_sql_readiness, "~> 0.2"}
   ]
 end
 ```
