@@ -27,6 +27,14 @@ defmodule EctoSqlReadiness.Probes do
     end
   end
 
+  def pending_migrations(repos) when is_list(repos) do
+    new_migrations(repos)
+    |> Enum.map(fn
+      {repo, _state, id, name} ->
+        {repo, id, name}
+    end)
+  end
+
   defp has_connections?(repos) do
     open_connections(repos)
     |> Enum.all?(fn

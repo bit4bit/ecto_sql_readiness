@@ -30,6 +30,11 @@ defmodule EctoSqlReadinessTest do
     test ":pending when there are pending migrations" do
       assert :pending_migrations = EctoSqlReadiness.probes([TestRepo])
     end
+
+    test "query pending migrations" do
+      pending = EctoSqlReadiness.pending_migrations([TestRepo])
+      assert [{TestRepo, 20_231_120_092_845, "create_demo"}] = pending
+    end
   end
 
   test "fail_connection" do

@@ -36,4 +36,9 @@ defmodule EctoSqlReadiness do
   def probes(repos) when is_list(repos) do
     Probes.probes(repos)
   end
+
+  @spec pending_migrations([repo()]) :: [{repo(), id :: term(), name :: String.t()}] | []
+  def pending_migrations(repos) when is_list(repos) do
+    Probes.pending_migrations(repos)
+  end
 end
