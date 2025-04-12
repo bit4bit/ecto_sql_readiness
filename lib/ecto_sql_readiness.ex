@@ -16,7 +16,7 @@ defmodule EctoSqlReadiness do
   How can we ensure that there are no pending migration during deployment?
   How can we ensure that Ecto is ready?
 
-  This library has been used with AWS Codedeploy, so we don't send
+  This library has been used with AWS CodeDeploy, so we don't send
   any traffic to the containers unless we ensure that Ecto is ready to work.
   """
 
@@ -29,7 +29,6 @@ defmodule EctoSqlReadiness do
   ## Examples
 
       iex> EctoSqlReadiness.probes([Store.Repo])
-
       :ok
   """
   @spec probes([repo()]) :: :ok | :fail_connection | :pending_migrations
@@ -37,6 +36,14 @@ defmodule EctoSqlReadiness do
     Probes.probes(repos)
   end
 
+  @doc """
+  Get information about the pending migrations.
+
+  ## Examples
+
+  iex> EctoSqlReadiness.probes([Store.Repo])
+  [{MyProject.Repo, 20231120092845, "create_demo"}]
+  """
   @spec pending_migrations([repo()]) :: [{repo(), id :: term(), name :: String.t()}] | []
   def pending_migrations(repos) when is_list(repos) do
     Probes.pending_migrations(repos)
